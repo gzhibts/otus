@@ -1,15 +1,13 @@
 package homework;
 
 import java.util.Map;
-import java.util.NavigableMap;
 import java.util.TreeMap;
 import java.util.AbstractMap;
 import java.util.Comparator;
 
 public class CustomerService {
 
-    private final NavigableMap<Customer, String> sortedMap = new TreeMap<>(Comparator.comparing(Customer::getScores));
-
+    private final TreeMap<Customer, String> sortedMap = new TreeMap<>(Comparator.comparing(Customer::getScores));
 
     public Map.Entry<Customer, String> getSmallest() {
 
@@ -39,7 +37,7 @@ public class CustomerService {
         var customerCopy = new Customer(customer.getId(), customer.getName(), customer.getScores());
 
         return new AbstractMap.SimpleEntry<>(customerCopy, entry.getValue());
-        
+
     }
 
 }
