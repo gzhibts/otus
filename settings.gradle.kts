@@ -24,3 +24,4 @@ pluginManagement {
         id("com.diffplug.spotless") version spotless
     }
 }
+include("L06-annotations")
