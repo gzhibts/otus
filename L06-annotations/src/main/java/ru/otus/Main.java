@@ -14,7 +14,6 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-        //var test = new MyTest();
         Class<MyTest> clazz = MyTest.class;
 
         List<Method> beforeMethods = new ArrayList<>();
@@ -40,36 +39,48 @@ public class Main {
         }
 
         for (var testMethod : testMethods) {
+
             try {
+
+                Object testingClassObject;
+                testingClassObject = clazz.getDeclaredConstructor().newInstance();
+
                 for (var beforeMethod : beforeMethods) {
                     try {
                         beforeMethod.setAccessible(true);
-                        beforeMethod.invoke(clazz);
+                        beforeMethod.invoke(testingClassObject);
                     } catch (IllegalAccessException | InvocationTargetException e) {
+                        System.err.println("=> Before method is failed");
                         throw new RuntimeException(e);
                     }
                 }
 
                 try {
-                    testMethod.setAccessible(true);
-                    testMethod.invoke(clazz);
-                    succeedTestCount++;
-                } catch (IllegalAccessException | InvocationTargetException e) {
-                    throw new RuntimeException(e);
+                    try {
+                        testMethod.setAccessible(true);
+                        testMethod.invoke(testingClassObject);
+                    } catch (IllegalAccessException | InvocationTargetException e) {
+                        throw new RuntimeException(e);
+                    }
+                } catch (RuntimeException ignore) {
+                    failedTestCount++;
                 }
 
                 for (var afterMethod : afterMethods) {
                     try {
                         afterMethod.setAccessible(true);
-                        afterMethod.invoke(clazz);
+                        afterMethod.invoke(testingClassObject);
+                        succeedTestCount++;
                     } catch (IllegalAccessException | InvocationTargetException e) {
+                        System.err.println("=> After method is failed");
                         throw new RuntimeException(e);
                     }
                 }
 
             }
             catch (Exception exception) {
-                failedTestCount++;
+                failedTestCount = testMethods.size();
+                break;
             }
         }
 
