@@ -3,10 +3,10 @@ package ru.otus.bankomatic;
 import ru.otus.banknote.Banknote;
 import java.util.List;
 
-public interface Bancomatic<T extends Banknote> {
+public interface Bancomatic {
 
-    void depositMoney(List<T> banknoteList);
+    void depositMoney(List<Banknote> banknoteList);
     int getBalance();
-    List<T> getMoney(int amount);
+    List<Banknote> getMoney(int amount);
 
 }

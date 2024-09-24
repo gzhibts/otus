@@ -1,7 +1,18 @@
 package ru.otus.banknote;
 
-public interface Banknote {
+public class Banknote {
 
-    int getDenomination();
+    private final Banknotes banknoteDenomination;
 
+    public Banknote(Banknotes banknoteDenomination) {
+        this.banknoteDenomination = banknoteDenomination;
+    }
+
+    public Banknotes getBanknoteDenomination() {
+        return banknoteDenomination;
+    }
+
+    public int getDenominationValue() {
+        return banknoteDenomination.getDenomination();
+    }
 }

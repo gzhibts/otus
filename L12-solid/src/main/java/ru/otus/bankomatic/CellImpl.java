@@ -1,13 +1,14 @@
 package ru.otus.bankomatic;
 
 import ru.otus.banknote.Banknote;
+import ru.otus.banknote.Banknotes;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CellImpl<T extends Banknote> implements Cell<T> {
+public class CellImpl implements Cell{
 
-    private final List<T> banknotes;
+    private final List<Banknote> banknotes;
     private final int maxBanknotesCount;
 
     public CellImpl(int maxBanknotesCount) {
@@ -25,15 +26,14 @@ public class CellImpl<T extends Banknote> implements Cell<T> {
         return this.banknotes.size();
     }
 
-
     @Override
-    public void addBanknotes(List<T> list) {
+    public void addBanknotes(List<Banknote> list) {
         this.banknotes.addAll(list);
     }
 
     @Override
-    public List<T> getBanknotes(int count) {
-        var result = new ArrayList<T>();
+    public List<Banknote> getBanknotes(int count) {
+        var result = new ArrayList<Banknote>();
         for (int n = 0; n < count; n++) {
             result.add(banknotes.getLast());
             banknotes.removeLast();

@@ -1,13 +1,13 @@
 package ru.otus.bankomatic;
 
 import ru.otus.banknote.Banknote;
+import ru.otus.banknote.Banknotes;
 
 import java.util.List;
 
-public interface CashStorage<N extends Banknote> {
+public interface CashStorage {
 
-    void depositMoney(List<N> banknoteList);
+    void depositMoney(List<Banknote> banknoteList);
     int getBalance();
-    List<N> getMoney(int amount);
-
+    List<Banknote> getMoney(int amount);
 }

@@ -1,13 +1,15 @@
 package ru.otus.bankomatic;
 
 import ru.otus.banknote.Banknote;
+import ru.otus.banknote.Banknotes;
 
 import java.util.List;
 
-public interface Cell<T extends Banknote>{
+public interface Cell {
 
     int getMaxBanknotesCount();
     int getBanknotesCount();
-    void addBanknotes(List<T> list);
-    List<T> getBanknotes(int count);
+    void addBanknotes(List<Banknote> list);
+    List<Banknote> getBanknotes(int count);
+
 }

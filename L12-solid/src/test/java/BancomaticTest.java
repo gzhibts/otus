@@ -2,7 +2,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.otus.banknote.*;
 import ru.otus.bankomatic.CashMachine;
-import ru.otus.bankomatic.CashStorageRub;
+import ru.otus.bankomatic.CashStorageImpl;
 
 import java.util.ArrayList;
 import java.lang.RuntimeException;
@@ -19,21 +19,19 @@ class BancomaticTest {
     @DisplayName("Проверка помещения банкнот")
     void depositMoneyTest() {
 
-        int expectedSum = 13300;
-        var myBancomatic = new CashMachine<>(new CashStorageRub<>());
+        int expectedSum = 13200;
+        var myBancomatic = new CashMachine(new CashStorageImpl());
 
-        var firstReceipt = new ArrayList<Ruble>();
+        var firstReceipt = new ArrayList<Banknote>();
 
         for (int i = 0; i < 2; i++) {
-            firstReceipt.add(new Rubles50());
-            firstReceipt.add(new Rubles100());
-            firstReceipt.add(new Rubles500());
-            firstReceipt.add(new Rubles1000());
-            firstReceipt.add(new Rubles5000());
+            firstReceipt.add(new Banknote(Banknotes.RUBLE_100));
+            firstReceipt.add(new Banknote(Banknotes.RUBLE_500));
+            firstReceipt.add(new Banknote(Banknotes.RUBLE_1000));
+            firstReceipt.add(new Banknote(Banknotes.RUBLE_5000));
         }
 
         myBancomatic.depositMoney(firstReceipt);
-        int amount = myBancomatic.getBalance();
 
         assertThat(myBancomatic.getBalance()).isEqualTo(expectedSum);
     }
@@ -42,28 +40,26 @@ class BancomaticTest {
     @DisplayName("Проверка выдачи при наличии суммы")
     void getMoneyTest() {
 
-        var myBancomatic = new CashMachine<>(new CashStorageRub<>());
+        var myBancomatic = new CashMachine(new CashStorageImpl());
 
-        var firstReceipt = new ArrayList<Ruble>();
+        var firstReceipt = new ArrayList<Banknote>();
 
         for (int i = 0; i < 2; i++) {
-            firstReceipt.add(new Rubles50());
-            firstReceipt.add(new Rubles100());
-            firstReceipt.add(new Rubles500());
-            firstReceipt.add(new Rubles1000());
-            firstReceipt.add(new Rubles5000());
+            firstReceipt.add(new Banknote(Banknotes.RUBLE_100));
+            firstReceipt.add(new Banknote(Banknotes.RUBLE_500));
+            firstReceipt.add(new Banknote(Banknotes.RUBLE_1000));
+            firstReceipt.add(new Banknote(Banknotes.RUBLE_5000));
         }
 
         myBancomatic.depositMoney(firstReceipt);
-
 
         List<Integer> result = new ArrayList<>();
         int expectedSum = 7600;
         int sum = 0;
         var cash = myBancomatic.getMoney(expectedSum);
         for (var c : cash) {
-            result.add(c.getDenomination());
-            sum += c.getDenomination();
+            result.add(c.getDenominationValue());
+            sum += c.getDenominationValue();
         }
 
         assertThat(sum).isEqualTo(expectedSum);
@@ -76,16 +72,15 @@ class BancomaticTest {
     @DisplayName("Проверка выдачи при отсутствии суммы")
     void getMoneyExceptionTest() {
 
-        var myBancomatic = new CashMachine<>(new CashStorageRub<>());
+        var myBancomatic = new CashMachine(new CashStorageImpl());
 
-        var firstReceipt = new ArrayList<Ruble>();
+        var firstReceipt = new ArrayList<Banknote>();
 
         for (int i = 0; i < 2; i++) {
-            firstReceipt.add(new Rubles50());
-            firstReceipt.add(new Rubles100());
-            firstReceipt.add(new Rubles500());
-            firstReceipt.add(new Rubles1000());
-            firstReceipt.add(new Rubles5000());
+            firstReceipt.add(new Banknote(Banknotes.RUBLE_100));
+            firstReceipt.add(new Banknote(Banknotes.RUBLE_500));
+            firstReceipt.add(new Banknote(Banknotes.RUBLE_1000));
+            firstReceipt.add(new Banknote(Banknotes.RUBLE_5000));
         }
 
         myBancomatic.depositMoney(firstReceipt);
@@ -106,26 +101,24 @@ class BancomaticTest {
     @DisplayName("Проверка баланса")
     void customerAsKeyTest() {
 
-        int expectedSum = 26550;
-        var myBancomatic = new CashMachine<>(new CashStorageRub<>());
+        int expectedSum = 26400;
+        var myBancomatic = new CashMachine(new CashStorageImpl());
 
-        var firstReceipt = new ArrayList<Ruble>();
+        var firstReceipt = new ArrayList<Banknote>();
 
         for (int i = 0; i < 3; i++) {
-            firstReceipt.add(new Rubles50());
-            firstReceipt.add(new Rubles100());
-            firstReceipt.add(new Rubles500());
-            firstReceipt.add(new Rubles1000());
-            firstReceipt.add(new Rubles5000());
+            firstReceipt.add(new Banknote(Banknotes.RUBLE_100));
+            firstReceipt.add(new Banknote(Banknotes.RUBLE_500));
+            firstReceipt.add(new Banknote(Banknotes.RUBLE_1000));
+            firstReceipt.add(new Banknote(Banknotes.RUBLE_5000));
         }
 
-        var secondReceipt = new ArrayList<Ruble>();
+        var secondReceipt = new ArrayList<Banknote>();
 
-        secondReceipt.add(new Rubles50());
-        secondReceipt.add(new Rubles50());
-        secondReceipt.add(new Rubles500());
-        secondReceipt.add(new Rubles1000());
-        secondReceipt.add(new Rubles5000());
+        secondReceipt.add(new Banknote(Banknotes.RUBLE_100));
+        secondReceipt.add(new Banknote(Banknotes.RUBLE_500));
+        secondReceipt.add(new Banknote(Banknotes.RUBLE_1000));
+        secondReceipt.add(new Banknote(Banknotes.RUBLE_5000));
 
         myBancomatic.depositMoney(firstReceipt);
         myBancomatic.depositMoney(secondReceipt);

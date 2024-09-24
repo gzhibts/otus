@@ -4,17 +4,17 @@ import ru.otus.banknote.Banknote;
 
 import java.util.List;
 
-public class CashMachine<T extends Banknote> implements Bancomatic<T> {
+public class CashMachine implements Bancomatic {
 
-    private final CashStorage<T> cashStorage; // new
+    private final CashStorage cashStorage; // new
 
-    public CashMachine(CashStorage<T> cashStorage) {
+    public CashMachine(CashStorage cashStorage) {
 
         this.cashStorage = cashStorage;
     }
 
     @Override
-    public void depositMoney(List<T> banknotesList) {
+    public void depositMoney(List<Banknote> banknotesList) {
         this.cashStorage.depositMoney(banknotesList);
     }
 
@@ -24,7 +24,7 @@ public class CashMachine<T extends Banknote> implements Bancomatic<T> {
     }
 
     @Override
-    public List<T> getMoney(int amount) throws RuntimeException{
+    public List<Banknote> getMoney(int amount) throws RuntimeException{
         return cashStorage.getMoney(amount);
     }
 }
