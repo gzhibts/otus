@@ -1,6 +1,6 @@
 package ru.otus.banknote;
 
-public enum Banknotes {
+public enum BanknotesDenomination {
     RUBLE_500 (5000),
     RUBLE_1000 (1000),
     RUBLE_5000 (500),
@@ -8,7 +8,7 @@ public enum Banknotes {
 
     private final int denomination;
 
-    Banknotes(int denomination) {
+    BanknotesDenomination(int denomination) {
         this.denomination = denomination;
     }
 

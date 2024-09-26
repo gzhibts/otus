@@ -1,20 +1,20 @@
 package ru.otus.bankomatic;
 
 import ru.otus.banknote.Banknote;
-import ru.otus.banknote.Banknotes;
+import ru.otus.banknote.BanknotesDenomination;
 
 import java.util.*;
 
 public class CashStorageImpl implements CashStorage {
 
-    private final Map<Banknotes, Cell> cellsMap;
-    private final Banknotes[] allBanknotesDenomination;
+    private final Map<BanknotesDenomination, Cell> cellsMap;
+    private final BanknotesDenomination[] allBanknotesDenomination;
 
     public CashStorageImpl() {
 
-        this.allBanknotesDenomination = Banknotes.values();
+        this.allBanknotesDenomination = BanknotesDenomination.values();
         this.cellsMap = new HashMap<>();
-        for (Banknotes denomination : allBanknotesDenomination) {
+        for (BanknotesDenomination denomination : allBanknotesDenomination) {
             this.cellsMap.put(denomination, new CellImpl(500));
         }
     }
@@ -22,7 +22,7 @@ public class CashStorageImpl implements CashStorage {
     @Override
     public void depositMoney(List<Banknote> banknotesList) {
 
-        for (Banknotes cellDenomination : allBanknotesDenomination) {
+        for (BanknotesDenomination cellDenomination : allBanknotesDenomination) {
             var cell = cellsMap.get(cellDenomination);
             var curTypeBanknotesList = banknotesList.stream().filter( b -> b.getBanknoteDenomination() == cellDenomination).toList();
             cell.addBanknotes(curTypeBanknotesList);
@@ -33,7 +33,7 @@ public class CashStorageImpl implements CashStorage {
     public int getBalance() {
 
         int sum = 0;
-        for (Banknotes cellDenomination : allBanknotesDenomination) {
+        for (BanknotesDenomination cellDenomination : allBanknotesDenomination) {
             var cell = cellsMap.get(cellDenomination);
             sum += cell.getBanknotesCount() * cellDenomination.getDenomination();
         }
@@ -55,7 +55,7 @@ public class CashStorageImpl implements CashStorage {
 
         int left = amount;
 
-        for (Banknotes denomination : allBanknotesDenomination) {
+        for (BanknotesDenomination denomination : allBanknotesDenomination) {
 
             if (denomination.getDenomination() <= left) {
 

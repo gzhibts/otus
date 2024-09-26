@@ -7,7 +7,6 @@ import ru.otus.bankomatic.CashStorageImpl;
 import java.util.ArrayList;
 import java.lang.RuntimeException;
 import java.util.List;
-import java.util.Map;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -25,10 +24,10 @@ class BancomaticTest {
         var firstReceipt = new ArrayList<Banknote>();
 
         for (int i = 0; i < 2; i++) {
-            firstReceipt.add(new Banknote(Banknotes.RUBLE_100));
-            firstReceipt.add(new Banknote(Banknotes.RUBLE_500));
-            firstReceipt.add(new Banknote(Banknotes.RUBLE_1000));
-            firstReceipt.add(new Banknote(Banknotes.RUBLE_5000));
+            firstReceipt.add(new Banknote(BanknotesDenomination.RUBLE_100));
+            firstReceipt.add(new Banknote(BanknotesDenomination.RUBLE_500));
+            firstReceipt.add(new Banknote(BanknotesDenomination.RUBLE_1000));
+            firstReceipt.add(new Banknote(BanknotesDenomination.RUBLE_5000));
         }
 
         myBancomatic.depositMoney(firstReceipt);
@@ -45,10 +44,10 @@ class BancomaticTest {
         var firstReceipt = new ArrayList<Banknote>();
 
         for (int i = 0; i < 2; i++) {
-            firstReceipt.add(new Banknote(Banknotes.RUBLE_100));
-            firstReceipt.add(new Banknote(Banknotes.RUBLE_500));
-            firstReceipt.add(new Banknote(Banknotes.RUBLE_1000));
-            firstReceipt.add(new Banknote(Banknotes.RUBLE_5000));
+            firstReceipt.add(new Banknote(BanknotesDenomination.RUBLE_100));
+            firstReceipt.add(new Banknote(BanknotesDenomination.RUBLE_500));
+            firstReceipt.add(new Banknote(BanknotesDenomination.RUBLE_1000));
+            firstReceipt.add(new Banknote(BanknotesDenomination.RUBLE_5000));
         }
 
         myBancomatic.depositMoney(firstReceipt);
@@ -77,10 +76,10 @@ class BancomaticTest {
         var firstReceipt = new ArrayList<Banknote>();
 
         for (int i = 0; i < 2; i++) {
-            firstReceipt.add(new Banknote(Banknotes.RUBLE_100));
-            firstReceipt.add(new Banknote(Banknotes.RUBLE_500));
-            firstReceipt.add(new Banknote(Banknotes.RUBLE_1000));
-            firstReceipt.add(new Banknote(Banknotes.RUBLE_5000));
+            firstReceipt.add(new Banknote(BanknotesDenomination.RUBLE_100));
+            firstReceipt.add(new Banknote(BanknotesDenomination.RUBLE_500));
+            firstReceipt.add(new Banknote(BanknotesDenomination.RUBLE_1000));
+            firstReceipt.add(new Banknote(BanknotesDenomination.RUBLE_5000));
         }
 
         myBancomatic.depositMoney(firstReceipt);
@@ -107,18 +106,18 @@ class BancomaticTest {
         var firstReceipt = new ArrayList<Banknote>();
 
         for (int i = 0; i < 3; i++) {
-            firstReceipt.add(new Banknote(Banknotes.RUBLE_100));
-            firstReceipt.add(new Banknote(Banknotes.RUBLE_500));
-            firstReceipt.add(new Banknote(Banknotes.RUBLE_1000));
-            firstReceipt.add(new Banknote(Banknotes.RUBLE_5000));
+            firstReceipt.add(new Banknote(BanknotesDenomination.RUBLE_100));
+            firstReceipt.add(new Banknote(BanknotesDenomination.RUBLE_500));
+            firstReceipt.add(new Banknote(BanknotesDenomination.RUBLE_1000));
+            firstReceipt.add(new Banknote(BanknotesDenomination.RUBLE_5000));
         }
 
         var secondReceipt = new ArrayList<Banknote>();
 
-        secondReceipt.add(new Banknote(Banknotes.RUBLE_100));
-        secondReceipt.add(new Banknote(Banknotes.RUBLE_500));
-        secondReceipt.add(new Banknote(Banknotes.RUBLE_1000));
-        secondReceipt.add(new Banknote(Banknotes.RUBLE_5000));
+        secondReceipt.add(new Banknote(BanknotesDenomination.RUBLE_100));
+        secondReceipt.add(new Banknote(BanknotesDenomination.RUBLE_500));
+        secondReceipt.add(new Banknote(BanknotesDenomination.RUBLE_1000));
+        secondReceipt.add(new Banknote(BanknotesDenomination.RUBLE_5000));
 
         myBancomatic.depositMoney(firstReceipt);
         myBancomatic.depositMoney(secondReceipt);

@@ -1,7 +1,6 @@
 package ru.otus.bankomatic;
 
 import ru.otus.banknote.Banknote;
-import ru.otus.banknote.Banknotes;
 
 import java.util.ArrayList;
 import java.util.List;

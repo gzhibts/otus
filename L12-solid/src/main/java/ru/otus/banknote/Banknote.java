@@ -2,13 +2,13 @@ package ru.otus.banknote;
 
 public class Banknote {
 
-    private final Banknotes banknoteDenomination;
+    private final BanknotesDenomination banknoteDenomination;
 
-    public Banknote(Banknotes banknoteDenomination) {
+    public Banknote(BanknotesDenomination banknoteDenomination) {
         this.banknoteDenomination = banknoteDenomination;
     }
 
-    public Banknotes getBanknoteDenomination() {
+    public BanknotesDenomination getBanknoteDenomination() {
         return banknoteDenomination;
     }
 
