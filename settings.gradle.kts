@@ -1,7 +1,10 @@
 rootProject.name = "otusJava"
 include("L01-gradle")
 include("L04-generics")
+include("L06-annotations")
 include("L12-solid")
+include("L12-solid")
+include("L18-jdbc")
 
 
 pluginManagement {
@@ -25,5 +28,3 @@ pluginManagement {
         id("com.diffplug.spotless") version spotless
     }
 }
-include("L06-annotations")
-include("L12-solid")
