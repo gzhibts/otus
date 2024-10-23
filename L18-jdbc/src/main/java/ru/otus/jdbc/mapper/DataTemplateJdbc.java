@@ -8,6 +8,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.otus.core.repository.DataTemplate;
 import ru.otus.core.repository.DataTemplateException;
 import ru.otus.core.repository.executor.DbExecutor;
@@ -20,6 +23,8 @@ public class DataTemplateJdbc<T> implements DataTemplate<T> {
     private final DbExecutor dbExecutor;
     private final EntitySQLMetaData entitySQLMetaData;
     private final EntityClassMetaData entityClassMetaData;
+
+    private static final Logger logger = LoggerFactory.getLogger(DataTemplateJdbc.class);
 
     public DataTemplateJdbc(DbExecutor dbExecutor, EntitySQLMetaData entitySQLMetaData, EntityClassMetaData entityClassMetaData) {
         this.dbExecutor = dbExecutor;
@@ -36,6 +41,7 @@ public class DataTemplateJdbc<T> implements DataTemplate<T> {
                 }
                 return null;
             } catch (SQLException e) {
+                logger.error(e.getMessage(), e);
                 throw new DataTemplateException(e);
             }
         });
@@ -51,6 +57,7 @@ public class DataTemplateJdbc<T> implements DataTemplate<T> {
                     }
                     return result;
                 } catch (Exception e) {
+                    logger.error(e.getMessage(), e);
                     throw new DataTemplateException(e);
                 }
             })
@@ -68,7 +75,8 @@ public class DataTemplateJdbc<T> implements DataTemplate<T> {
             try {
                 params.add(field.get(client));
             } catch (IllegalAccessException e) {
-                throw new RuntimeException(e);
+                logger.error(e.getMessage(), e);
+                throw new DataTemplateException(e);
             }
         }
 
@@ -87,6 +95,7 @@ public class DataTemplateJdbc<T> implements DataTemplate<T> {
             try {
                 params.add(field.get(client));
             } catch (IllegalAccessException e) {
+                logger.error(e.getMessage(), e);
                 throw new RuntimeException(e);
             }
         }
