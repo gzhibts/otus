@@ -5,6 +5,7 @@ include("L06-annotations")
 include("L12-solid")
 include("L12-solid")
 include("L18-jdbc")
+include("L21-jpql")
 
 
 pluginManagement {
