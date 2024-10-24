@@ -14,7 +14,7 @@ public class Phone implements Cloneable {
     @Column(name = "phonenumber")
     private String number;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Client client;
 
     public Phone(Long id, String number) {

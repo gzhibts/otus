@@ -31,7 +31,7 @@ public class DbServiceDemo {
         new MigrationsExecutorFlyway(dbUrl, dbUserName, dbPassword).executeMigrations();
 
         var sessionFactory =
-                HibernateUtils.buildSessionFactory(configuration, Client.class, Address.class, Phone.class);
+            HibernateUtils.buildSessionFactory(configuration, Client.class, Address.class, Phone.class);
 
         var transactionManager = new TransactionManagerHibernate(sessionFactory);
         ///

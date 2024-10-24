@@ -43,7 +43,7 @@ public class Client implements Cloneable {
     }
 
     @SuppressWarnings("this-escape")
-    public <E> Client(Long id, String name, Address address, List<Phone> phones) {
+    public Client(Long id, String name, Address address, List<Phone> phones) {
         this.id = id;
         this.name = name;
         this.address = address;

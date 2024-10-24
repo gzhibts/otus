@@ -15,7 +15,8 @@ create table client
 (
     address_id bigint unique,
     id bigint not null,
-    name varchar(255), primary key (id)
+    name varchar(255),
+    primary key (id)
 );
 
 create table address
