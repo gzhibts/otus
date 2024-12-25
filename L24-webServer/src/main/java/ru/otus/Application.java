@@ -11,15 +11,15 @@ import ru.otus.crm.model.Address;
 import ru.otus.crm.model.Client;
 import ru.otus.crm.model.Phone;
 import ru.otus.crm.service.DbServiceClientImpl;
-import ru.otus.server.UsersWebServer;
-import ru.otus.server.UsersWebServerWithFilterBasedSecurity;
+import ru.otus.server.WebServer;
+import ru.otus.server.WebServerWithFilterBasedSecurity;
 import ru.otus.services.TemplateProcessor;
 import ru.otus.services.TemplateProcessorImpl;
 import ru.otus.services.UserAuthService;
 import ru.otus.services.UserAuthServiceImpl;
 
 
-public class WebServerWithFilterBasedSecurityDemo {
+public class Application {
     private static final int WEB_SERVER_PORT = 8080;
     private static final String TEMPLATES_DIR = "/templates/";
     public static final String HIBERNATE_CFG_FILE = "hibernate.cfg.xml";
@@ -47,10 +47,10 @@ public class WebServerWithFilterBasedSecurityDemo {
         TemplateProcessor templateProcessor = new TemplateProcessorImpl(TEMPLATES_DIR);
         UserAuthService authService = new UserAuthServiceImpl();
 
-        UsersWebServer usersWebServer = new UsersWebServerWithFilterBasedSecurity(
+        WebServer webServer = new WebServerWithFilterBasedSecurity(
                 WEB_SERVER_PORT, authService, dbServiceClient, gson, templateProcessor);
 
-        usersWebServer.start();
-        usersWebServer.join();
+        webServer.start();
+        webServer.join();
     }
 }

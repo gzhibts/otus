@@ -13,10 +13,10 @@ import ru.otus.servlet.LoginServlet;
 
 import java.util.Arrays;
 
-public class UsersWebServerWithFilterBasedSecurity extends UsersWebServerSimple {
+public class WebServerWithFilterBasedSecurity extends WebServerSimple {
     private final UserAuthService authService;
 
-    public UsersWebServerWithFilterBasedSecurity(
+    public WebServerWithFilterBasedSecurity(
             int port, UserAuthService authService, DBServiceClient dbServiceClient, Gson gson, TemplateProcessor templateProcessor) {
         super(port, dbServiceClient, gson, templateProcessor);
         this.authService = authService;

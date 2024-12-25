@@ -12,8 +12,8 @@ import ru.otus.services.TemplateProcessor;
 import ru.otus.servlet.AddClientServlet;
 import ru.otus.servlet.ClientsListServlet;
 
-public class UsersWebServerSimple implements UsersWebServer {
-    private static final String START_PAGE_NAME = "index.html";
+public class WebServerSimple implements WebServer {
+    private static final String START_PAGE_NAME = "clients.html";
     private static final String COMMON_RESOURCES_DIR = "static";
 
     private final DBServiceClient dbServiceClient;
@@ -21,7 +21,7 @@ public class UsersWebServerSimple implements UsersWebServer {
     protected final TemplateProcessor templateProcessor;
     private final Server server;
 
-    public UsersWebServerSimple(int port, DBServiceClient dbServiceClient, Gson gson, TemplateProcessor templateProcessor) {
+    public WebServerSimple(int port, DBServiceClient dbServiceClient, Gson gson, TemplateProcessor templateProcessor) {
         this.dbServiceClient = dbServiceClient;
         this.gson = gson;
         this.templateProcessor = templateProcessor;
@@ -53,7 +53,7 @@ public class UsersWebServerSimple implements UsersWebServer {
 
         Handler.Sequence sequence = new Handler.Sequence();
         sequence.addHandler(resourceHandler);
-        sequence.addHandler(applySecurity(servletContextHandler, "/clients", "/api/client/*"));
+        sequence.addHandler(applySecurity(servletContextHandler, "/clients", "/add"));
 
         server.setHandler(sequence);
     }
