@@ -7,6 +7,7 @@ include("L12-solid")
 include("L18-jdbc")
 include("L21-jpql")
 include("L22-cache")
+include("L25-di")
 
 
 pluginManagement {
